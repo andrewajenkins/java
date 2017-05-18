@@ -1,10 +1,10 @@
-package pattern.builder;
+package pattern;
 
-public class BuilderPattern {
+public class Builder {
 
 	public static void main(String args) {
 
-		BuilderPattern pat = new BuilderPattern();
+		Builder pat = new Builder();
 
 		// Create a red mountain bike with reflectors
 		BikeBuilder builderA = pat.new BikeBuilder();
