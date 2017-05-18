@@ -24,5 +24,6 @@
 # Design patterns
 ### Creational
   * [Builder](https://github.com/andrewajenkins/java/blob/master/src/pattern/builder/BuilderPattern.java)
+  * [Factory method](https://github.com/andrewajenkins/java/blob/master/src/pattern/FactoryMethod.java)
 # Language API
   * [Reflection](https://github.com/andrewajenkins/java/blob/master/src/lang/ReflectionExample.java)
