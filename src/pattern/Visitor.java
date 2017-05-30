@@ -20,8 +20,8 @@ public class Visitor {
 		Visitor v = new Visitor();
 
 		Element[] elements = new Element[2];
-		elements[0] = v.new ConcreteElementA();
-		elements[1] = v.new ConcreteElementB();
+		elements[0] = v.new ElementA();
+		elements[1] = v.new ElementB();
 
 		WorkElementVisitor workVisitor = v.new WorkElementVisitor();
 		DataElementVisitor dataVisitor = v.new DataElementVisitor();
@@ -40,38 +40,38 @@ public class Visitor {
 	}
 
 	interface ElementVisitor {
-		void visit(ConcreteElementA a);
-		void visit(ConcreteElementB b);
+		void visit(ElementA a);
+		void visit(ElementB b);
 	}
 
-	class ConcreteElementA implements Element{
+	class ElementA implements Element{
 		public void accept(ElementVisitor v) {
 			v.visit(this);
 		}
 	}
 
-	class ConcreteElementB implements Element{
+	class ElementB implements Element{
 		public void accept(ElementVisitor v) {
 			v.visit(this);
 		}
 	}
 
 	class WorkElementVisitor implements ElementVisitor {
-		public void visit(ConcreteElementA a) {
+		public void visit(ElementA a) {
 			// do work on a
 		}
 
-		public void visit(ConcreteElementB b) {
+		public void visit(ElementB b) {
 			// do work on b
 		}
 	}
 
 	class DataElementVisitor implements ElementVisitor {
-		public void visit(ConcreteElementA a) {
+		public void visit(ElementA a) {
 			// get data from a
 		}
 
-		public void visit(ConcreteElementB b) {
+		public void visit(ElementB b) {
 			// get data from b
 		}
 	}
