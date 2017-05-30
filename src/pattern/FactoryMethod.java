@@ -1,8 +1,9 @@
 package pattern;
 
 /**
- * This Factory Method pattern allows the object owner to decide which 
- * of two implementations of string concat to pass to the client
+ * This Factory Method pattern allows the object owner to decide which of two implementations
+ * of string concat to pass to the client. One version of concat uses the '+' operator and the
+ * other version uses StringBuilder to concatenate the strings.
  */
 public class FactoryMethod {
 	public static void main(String args) {
