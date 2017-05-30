@@ -23,7 +23,8 @@
   * [Stack](https://github.com/andrewajenkins/java/blob/master/src/algo/objects/Stack.java)
 # Design patterns
 ### Creational
-  * [Builder](https://github.com/andrewajenkins/java/blob/master/src/pattern/builder/BuilderPattern.java)
+  * [Builder](https://github.com/andrewajenkins/java/blob/master/src/pattern/Builder.java)
   * [Factory method](https://github.com/andrewajenkins/java/blob/master/src/pattern/FactoryMethod.java)
+  * [Visitor](https://github.com/andrewajenkins/java/blob/master/src/pattern/Visitor.java)
 # Language API
   * [Reflection](https://github.com/andrewajenkins/java/blob/master/src/lang/ReflectionExample.java)
