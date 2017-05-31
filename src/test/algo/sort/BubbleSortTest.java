@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import main.algo.sort.BubbleSort;
 
-public class GenericBubbleSortTest {
+public class BubbleSortTest {
 
 	@Test
 	public void integerTest() {
