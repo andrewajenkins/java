@@ -1,4 +1,4 @@
-package algo.sort;
+package main.algo.sort;
 
 import java.util.Arrays;
 import java.util.Random;

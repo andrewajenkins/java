@@ -1,4 +1,4 @@
-package algo.objects;
+package main.algo.objects;
 
 /**
  * Created by username on 10/11/2015.

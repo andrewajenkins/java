@@ -1,7 +1,7 @@
-package algo.sort;
+package main.algo.sort;
 
-import algo.objects.Vertex;
-import algo.search.DFS;
+import main.algo.objects.Vertex;
+import main.algo.search.DFS;
 
 import java.util.HashMap;
 import java.util.LinkedList;

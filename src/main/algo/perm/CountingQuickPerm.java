@@ -1,4 +1,4 @@
-package algo.perm;
+package main.algo.perm;
 
 public class CountingQuickPerm {
 

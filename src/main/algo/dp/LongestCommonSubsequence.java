@@ -1,4 +1,4 @@
-package algo.dp;
+package main.algo.dp;
 
 public class LongestCommonSubsequence {
 	public static Pair lengthLCS(int[] x, int[] y) {

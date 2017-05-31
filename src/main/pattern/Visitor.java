@@ -1,4 +1,4 @@
-package pattern;
+package main.pattern;
 
 /**
  * This class is based on the information provided at sourcemaking.com/design_patterns/visitor

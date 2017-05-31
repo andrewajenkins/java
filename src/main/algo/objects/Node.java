@@ -1,4 +1,4 @@
-package algo.objects;
+package main.algo.objects;
 
 public class Node {
     int key;

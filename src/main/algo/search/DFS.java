@@ -1,9 +1,9 @@
-package algo.search;
-
-import algo.objects.Vertex;
+package main.algo.search;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+
+import main.algo.objects.Vertex;
 
 public class DFS {
 

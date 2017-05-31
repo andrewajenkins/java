@@ -1,4 +1,4 @@
-package algo.objects;
+package main.algo.objects;
 
 public class Vertex {
     public int data;

@@ -1,4 +1,4 @@
-package pattern;
+package main.pattern;
 
 /**
  * This Factory Method pattern allows the object owner to decide which of two implementations
