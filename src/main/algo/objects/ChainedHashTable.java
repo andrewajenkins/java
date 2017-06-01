@@ -1,14 +1,14 @@
 package main.algo.objects;
 
-public class HashTable {
+public class ChainedHashTable {
 
     private static LinkedList[] table = new LinkedList[256];
 
-    public void chainedHashInsert(HashTable t, int x) {
+    public void chainedHashInsert(ChainedHashTable t, int x) {
         LinkedList.listInsert(t.table[h(x)], new Node(x));
     }
 
-    public boolean chainedHashSearch(HashTable t, int k) {
+    public boolean chainedHashSearch(ChainedHashTable t, int k) {
         LinkedList list = t.table[h(k)];
         Node node = list.head;
         while(node.next != null) {
@@ -18,7 +18,7 @@ public class HashTable {
         return false;
     }
 
-    public void chainedHashDelete(HashTable t, int k) {
+    public void chainedHashDelete(ChainedHashTable t, int k) {
         LinkedList list = t.table[h(k)];
         LinkedList.listDelete(list, new Node(k));
     }

@@ -7,15 +7,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.algo.objects.HashTable;
+import main.algo.objects.ChainedHashTable;
 
 public class HashTableTest {
 
-    HashTable ht;
+    ChainedHashTable ht;
 
     @Before
     public void before() {
-        ht = new HashTable();
+        ht = new ChainedHashTable();
         for(int i = 100; i > 0; i--) {
             ht.chainedHashInsert(ht, i);
         }
