@@ -1,6 +1,7 @@
 package main.datastructure.hashtable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Map;
@@ -12,12 +13,17 @@ import java.util.Set;
 public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
 
     private static final long serialVersionUID = 1L;
+    private ArrayList<Pair<K,V>> table;
+    private int initialCapacity = 11;
+    private float loadFactor = .75f;
+    
 
     /**
      * Constructs a new, empty hashtable with a default initial capacity (11) and load factor (0.75).
      */
     public HashTable() {
-        throw new UnsupportedOperationException();
+        this.table = new ArrayList<Pair<K,V>>(initialCapacity);
+        this.loadFactor = loadFactor;
     }
 
     /**
@@ -143,7 +149,19 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Maps the specified key to the specified value in this hashtable.
      */
     public V put(K key, V value) {
-        throw new UnsupportedOperationException();
+        Pair<K,V> e = new Pair<K,V>(key, value);
+        if(table.isEmpty()) {
+            table.add(e);
+            return value;
+        } else {
+            Pair<K,V> current = table.get(0);
+            while(current.next != null) {
+                current = current.next;
+            }
+            current.next = e;
+            table.add(0,e);
+        }
+        return value;
     }
 
     /**
