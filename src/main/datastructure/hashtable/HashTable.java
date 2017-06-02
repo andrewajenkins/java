@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,7 +16,7 @@ import java.util.Set;
 public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
 
     private static final long serialVersionUID = 1L;
-    private ArrayList<Pair<K,V>> table;
+    private ArrayList<LinkedList<Pair<K,V>>> table;
     private ArrayList<K> keys;
     private ArrayList<V> values;
     private int capacity = 11;
@@ -45,11 +47,11 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
     public HashTable(int initialCapacity, float loadFactor) {
         this.capacity = initialCapacity;
         this.loadFactor = loadFactor;
-        this.table = new ArrayList<Pair<K,V>>(initialCapacity);
+        this.table = new ArrayList<LinkedList<Pair<K,V>>>(initialCapacity);
         this.keys = new ArrayList<K>();
         this.values = new ArrayList<V>();
         for(int i = 0; i < initialCapacity; i++) {
-            table.add(null);
+            table.add(new LinkedList<Pair<K,V>>());
         }
         this.loadFactor = loadFactor;
     }
@@ -66,7 +68,7 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Clears this hashtable so that it contains no keys.
      */
     public void clear() {
-        this.table = new ArrayList<Pair<K,V>>(table.size());
+        this.table = new ArrayList<LinkedList<Pair<K,V>>>(table.size());
         this.keys = new ArrayList<K>();
         this.values = new ArrayList<V>();
         size = 0;
@@ -142,7 +144,7 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Tests if this hashtable maps no keys to values.
      */
     public boolean isEmpty() {
-        throw new UnsupportedOperationException();
+        return table.isEmpty();
     }
 
     /**
@@ -164,21 +166,9 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      */
     public V put(K key, V value) {
         Pair<K,V> e = new Pair<K,V>(key, value);
-        int index = Math.abs(e.hashCode() % capacity - 1);
+        int index = Math.abs(key.hashCode() % capacity - 1);
         System.out.println(index + " " + e.hashCode());
-        if(table.get(index) == null) {
-            table.remove(index);
-            table.add(index,e);
-        } else {
-            Pair<K,V> head = table.get(index);
-            Pair<K,V> current = head;
-            while(current.next != null) {
-                current = current.next;
-            }
-            current.next = e;
-            table.remove(index);
-            table.add(index,head);
-        }
+        table.get(index).add(e);
         printTable();
         keys.add(key);
         values.add(value);
@@ -190,7 +180,14 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Copies all of the mappings from the specified map to this hashtable.
      */
     public void putAll(Map<? extends K, ? extends V> t) {
-        throw new UnsupportedOperationException();
+        Set<? extends K> set = t.keySet();
+        for(K key : set) {
+            V value = t.get(key);
+            put(key, value);
+            keys.add(key);
+            values.add(value);
+            size++;
+        }
     }
 
     /**
@@ -204,7 +201,21 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Removes the key (and its corresponding value) from this hashtable.
      */
     public V remove(Object key) {
-        throw new UnsupportedOperationException();
+        int index = Math.abs(key.hashCode() % capacity - 1);
+        LinkedList<Pair<K,V>> list = table.get(index);
+        for(int i = 0; i < list.size(); i++) {
+            Pair<K,V> p = list.get(i);
+            if(p.getKey().equals(key)) {
+                list.remove(i);
+                keys.remove(key);
+                values.remove(p.getValue());
+                size--;
+                printTable();
+                return p.getValue();
+            }
+        }
+        printTable();
+        return null;
     }
 
     /**
@@ -232,10 +243,10 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
         System.out.println("---------------------------------------");
         for(int i = 0; i < capacity; i++) {
             System.out.print(i + " ");
-            Pair<K,V> cur = table.get(i);
-            while(cur != null) {
-                System.out.print(cur.getValue() + " ");
-                cur = cur.next;
+            LinkedList<Pair<K,V>> list = table.get(i);
+            Iterator<Pair<K,V>> it = list.iterator();
+            while(it.hasNext()) {
+                System.out.print(it.next().getValue() + " ");
             }
             System.out.println();
         }
