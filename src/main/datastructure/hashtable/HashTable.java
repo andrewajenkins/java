@@ -23,6 +23,9 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      */
     public HashTable() {
         this.table = new ArrayList<Pair<K,V>>(initialCapacity);
+        for(int i = 0; i < initialCapacity; i++) {
+            table.add(null);
+        }
         this.loadFactor = loadFactor;
     }
 
@@ -31,7 +34,12 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * @param initialCapacity
      */
     public HashTable(int initialCapacity) {
-        throw new UnsupportedOperationException();
+        this.initialCapacity = initialCapacity;
+        this.table = new ArrayList<Pair<K,V>>(initialCapacity);
+        for(int i = 0; i < initialCapacity; i++) {
+            table.add(null);
+        }
+        this.loadFactor = loadFactor;
     }
 
     /**
@@ -150,17 +158,22 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      */
     public V put(K key, V value) {
         Pair<K,V> e = new Pair<K,V>(key, value);
-        if(table.isEmpty()) {
-            table.add(e);
-            return value;
+        int index = e.hashCode() % initialCapacity - 1;
+        System.out.println(index + " " + e.hashCode());
+        if(table.get(index) == null) {
+            table.remove(index);
+            table.add(index,e);
         } else {
-            Pair<K,V> current = table.get(0);
+            Pair<K,V> current = table.get(index);
+            Pair<K,V> head = current;
             while(current.next != null) {
                 current = current.next;
             }
             current.next = e;
-            table.add(0,e);
+            table.remove(index);
+            table.add(index,head);
         }
+        printTable();
         return value;
     }
 
@@ -206,4 +219,16 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
         throw new UnsupportedOperationException();
     }
 
+    public void printTable() {
+        System.out.println("---------------------------------------");
+        for(int i = 0; i < initialCapacity; i++) {
+            System.out.print(i + " ");
+            Pair<K,V> cur = table.get(i);
+            while(cur != null) {
+                System.out.print(cur.getValue() + " ");
+                cur = cur.next;
+            }
+            System.out.println();
+        }
+    }
 }
