@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,19 +15,18 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
 
     private static final long serialVersionUID = 1L;
     private ArrayList<Pair<K,V>> table;
-    private int initialCapacity = 11;
+    private ArrayList<K> keys;
+    private ArrayList<V> values;
+    private int capacity = 11;
     private float loadFactor = .75f;
+    private int size = 0;
     
 
     /**
      * Constructs a new, empty hashtable with a default initial capacity (11) and load factor (0.75).
      */
     public HashTable() {
-        this.table = new ArrayList<Pair<K,V>>(initialCapacity);
-        for(int i = 0; i < initialCapacity; i++) {
-            table.add(null);
-        }
-        this.loadFactor = loadFactor;
+        this(11);
     }
 
     /**
@@ -34,12 +34,7 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * @param initialCapacity
      */
     public HashTable(int initialCapacity) {
-        this.initialCapacity = initialCapacity;
-        this.table = new ArrayList<Pair<K,V>>(initialCapacity);
-        for(int i = 0; i < initialCapacity; i++) {
-            table.add(null);
-        }
-        this.loadFactor = loadFactor;
+        this(initialCapacity, .75f);
     }
 
     /**
@@ -48,7 +43,15 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * @param loadFactor
      */
     public HashTable(int initialCapacity, float loadFactor) {
-        throw new UnsupportedOperationException();
+        this.capacity = initialCapacity;
+        this.loadFactor = loadFactor;
+        this.table = new ArrayList<Pair<K,V>>(initialCapacity);
+        this.keys = new ArrayList<K>();
+        this.values = new ArrayList<V>();
+        for(int i = 0; i < initialCapacity; i++) {
+            table.add(null);
+        }
+        this.loadFactor = loadFactor;
     }
 
     /**
@@ -63,7 +66,10 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Clears this hashtable so that it contains no keys.
      */
     public void clear() {
-        throw new UnsupportedOperationException();
+        this.table = new ArrayList<Pair<K,V>>(table.size());
+        this.keys = new ArrayList<K>();
+        this.values = new ArrayList<V>();
+        size = 0;
     }
 
     /**
@@ -84,14 +90,14 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Tests if the specified object is a key in this hashtable.
      */
     public boolean containsKey(Object key) {
-        throw new UnsupportedOperationException();
+        return keys.contains(key);
     }
 
     /**
      * Returns true if this hashtable maps one or more keys to this value.
      */
     public boolean containsValue(Object value) {
-        throw new UnsupportedOperationException();
+        return values.contains(value);
     }
 
     /**
@@ -150,7 +156,7 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Returns a Set view of the keys contained in this map.
      */
     public Set<K> keySet() {
-        throw new UnsupportedOperationException();
+        return new HashSet<K>(keys);
     }
 
     /**
@@ -158,14 +164,14 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      */
     public V put(K key, V value) {
         Pair<K,V> e = new Pair<K,V>(key, value);
-        int index = e.hashCode() % initialCapacity - 1;
+        int index = Math.abs(e.hashCode() % capacity - 1);
         System.out.println(index + " " + e.hashCode());
         if(table.get(index) == null) {
             table.remove(index);
             table.add(index,e);
         } else {
-            Pair<K,V> current = table.get(index);
-            Pair<K,V> head = current;
+            Pair<K,V> head = table.get(index);
+            Pair<K,V> current = head;
             while(current.next != null) {
                 current = current.next;
             }
@@ -174,6 +180,9 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
             table.add(index,head);
         }
         printTable();
+        keys.add(key);
+        values.add(value);
+        size++;
         return value;
     }
 
@@ -202,7 +211,7 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Returns the number of keys in this hashtable
      */
     public int size() {
-        throw new UnsupportedOperationException();
+        return size;
     }
 
     /**
@@ -216,12 +225,12 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Returns a Collection view of the values contained in this map.
      */
     public Collection<V> values() {
-        throw new UnsupportedOperationException();
+        return values;
     }
 
     public void printTable() {
         System.out.println("---------------------------------------");
-        for(int i = 0; i < initialCapacity; i++) {
+        for(int i = 0; i < capacity; i++) {
             System.out.print(i + " ");
             Pair<K,V> cur = table.get(i);
             while(cur != null) {
