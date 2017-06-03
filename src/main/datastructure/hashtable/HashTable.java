@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
 
 /**
  * An array based implementation of hash table that supports the same hash table api as Java 7
@@ -130,14 +131,22 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
      */
     public V get(Object key) {
-        throw new UnsupportedOperationException();
+        int index = Math.abs(key.hashCode() % capacity - 1);
+        LinkedList<Pair<K,V>> list = table.get(index);
+        for(int i = 0; i < list.size(); i++) {
+            Pair<K,V> p = list.get(i);
+            if(p.getKey().equals(key)) {
+                return p.getValue();
+            }
+        }
+        return null;
     }
 
     /**
      * Returns the hash code value for this Map as per the definition in the Map interface.
      */
     public int hashCode() {
-        throw new UnsupportedOperationException();
+        return this.hashCode();
     }
 
     /**
@@ -151,7 +160,7 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Returns an enumeration of the keys in this hashtable.
      */
     public Enumeration<K> keys() {
-        throw new UnsupportedOperationException();
+        return new Vector(this.keys).elements();
     }
 
     /**

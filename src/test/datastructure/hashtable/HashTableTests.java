@@ -8,7 +8,7 @@ import main.datastructure.hashtable.HashTable;
 
 public class HashTableTests {
 
-    @Test
+//    @Test
     public void stringTest() {
         HashTable<String,String> table = new HashTable<String,String>();
         table.put("a", "a");
@@ -42,10 +42,22 @@ public class HashTableTests {
             table.put(i, i);
             table.put(i, i);
         }
-        assertTrue(true);
+        for(int i = 0; i < 20; i++) {
+            assertTrue(table.get(i) == i);
+        }
+        for(int i = 0; i < 20; i++) {
+            assertTrue(table.remove(i) == i);
+            assertTrue(table.remove(i) == i);
+        }
+        for(int i = 0; i < 20; i++) {
+            assertTrue(table.remove(i) == null);
+        }
+        for(int i = 0; i < 20; i++) {
+            assertTrue(table.get(i) == null);
+        }
     }
 
-    @Test
+//    @Test
     public void sameTest() throws NoSuchFieldException, SecurityException {
         HashTable<Integer, Integer> table = new HashTable<Integer, Integer>();
         table.put(1,1);
