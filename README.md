@@ -26,5 +26,8 @@
   * [Builder](https://github.com/andrewajenkins/java/blob/master/src/main/pattern/Builder.java)
   * [Factory method](https://github.com/andrewajenkins/java/blob/master/src/main/pattern/FactoryMethod.java)
   * [Visitor](https://github.com/andrewajenkins/java/blob/master/src/main/pattern/Visitor.java)
+### Structural
+  * [Decorator](https://github.com/andrewajenkins/java/blob/master/src/main/pattern/Decorator.java)
+  
 # Language API
   * [Reflection](https://github.com/andrewajenkins/java/blob/master/src/main/lang/ReflectionExample.java)
