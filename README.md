@@ -16,7 +16,7 @@
   * [Steps](https://github.com/andrewajenkins/java/blob/master/src/main/algo/dp/Steps.java)
 # Data structures
   * [Binary search tree](https://github.com/andrewajenkins/java/blob/master/src/main/algo/objects/BinarySearchTree.java)
-  * [Hash table](https://github.com/andrewajenkins/java/blob/master/src/main/algo/objects/HashTable.java)
+  * [Hash table](https://github.com/andrewajenkins/java/blob/master/src/main/datastructure/HashTable.java)
   * [Heap](https://github.com/andrewajenkins/java/blob/master/src/main/algo/objects/Heap.java)
   * [LinkedList](https://github.com/andrewajenkins/java/blob/master/src/main/algo/objects/LinkedList.java)
   * [Queue](https://github.com/andrewajenkins/java/blob/master/src/main/algo/objects/Queue.java)
