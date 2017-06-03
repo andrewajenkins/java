@@ -33,3 +33,4 @@
   
 # Language API
   * [Reflection](https://github.com/andrewajenkins/java/blob/master/src/main/lang/ReflectionExample.java)
+  * [Generic](https://github.com/andrewajenkins/java/blob/master/src/main/lang/GenericExample.java)

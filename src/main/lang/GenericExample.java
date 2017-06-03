@@ -22,6 +22,11 @@ public class GenericExample<KeyType, DataType> {
 		return key + " " + data;
 	}
 
+	public static <E> E printHashCode(E e) {
+	    System.out.println(e.hashCode());
+	    return e;
+	}
+
 	public static void main(String[] args) {
 		int key = 6;
 		String data = "hi";
