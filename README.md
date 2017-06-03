@@ -14,13 +14,15 @@
   * [Maximum subarray](https://github.com/andrewajenkins/java/blob/master/src/main/algo/dp/MaximumSubarray.java)
   * [Rod cutting](https://github.com/andrewajenkins/java/blob/master/src/main/algo/dp/RodCutting.java)
   * [Steps](https://github.com/andrewajenkins/java/blob/master/src/main/algo/dp/Steps.java)
-# Data structures
+### Objects
   * [Binary search tree](https://github.com/andrewajenkins/java/blob/master/src/main/algo/objects/BinarySearchTree.java)
-  * [Hash table](https://github.com/andrewajenkins/java/blob/master/src/main/datastructure/hashtable/HashTable.java)
+  * [Hash table](https://github.com/andrewajenkins/java/blob/master/src/main/algo/objects/ChainedHashTable.java)
   * [Heap](https://github.com/andrewajenkins/java/blob/master/src/main/algo/objects/Heap.java)
   * [LinkedList](https://github.com/andrewajenkins/java/blob/master/src/main/algo/objects/LinkedList.java)
   * [Queue](https://github.com/andrewajenkins/java/blob/master/src/main/algo/objects/Queue.java)
   * [Stack](https://github.com/andrewajenkins/java/blob/master/src/main/algo/objects/Stack.java)
+# Data structures
+  * [Hash table](https://github.com/andrewajenkins/java/blob/master/src/main/datastructure/hashtable/HashTable.java)
 # Design patterns
 ### Creational
   * [Builder](https://github.com/andrewajenkins/java/blob/master/src/main/pattern/Builder.java)
