@@ -62,6 +62,11 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * @param m
      */
     public HashTable(Map<? extends K, ? extends V> m) {
+        this();
+        Set<? extends K> keySet = m.keySet();
+        for(K key : keySet) {
+            put(key, m.get(key));
+        }
         throw new UnsupportedOperationException();
     }
 
