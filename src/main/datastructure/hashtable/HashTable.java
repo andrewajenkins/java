@@ -129,7 +129,27 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Compares the specified Object with this Map for equality, as per the definition in the Map interface.
      */
     public boolean equals(Object o) {
-        throw new UnsupportedOperationException();
+        if(o == this) {
+            return true;
+        }
+
+        if(!(o instanceof HashTable)) {
+            return false;
+        }
+
+        HashTable<K,V> ht = (HashTable<K,V>) o;
+
+        if(!ht.keySet().equals(this.keySet())) {
+            return false;
+        }
+
+        for(K key : ht.keySet()) {
+            if(!ht.get(key).equals(this.get(key))) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
