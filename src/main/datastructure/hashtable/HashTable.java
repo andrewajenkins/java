@@ -84,7 +84,7 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Creates a shallow copy of this hashtable.
      */
     public Object clone() {
-        throw new UnsupportedOperationException();
+        return this.clone();
     }
 
     /**
@@ -165,7 +165,7 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
      * Returns an enumeration of the keys in this hashtable.
      */
     public Enumeration<K> keys() {
-        return new Vector(this.keys).elements();
+        return new Vector<K>(this.keys).elements();
     }
 
     /**
@@ -182,6 +182,7 @@ public class HashTable<K,V> implements Serializable, Cloneable, Map<K,V>{
         Pair<K,V> e = new Pair<K,V>(key, value);
         int index = Math.abs(key.hashCode() % capacity - 1);
         System.out.println(index + " " + e.hashCode());
+        remove(key);
         table.get(index).add(e);
         printTable();
         keys.add(key);
